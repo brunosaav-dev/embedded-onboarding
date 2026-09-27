@@ -17,6 +17,17 @@ void FizzBuzz(int n) {
     }
 }
 
+int compare_desc(const void *a, const void *b) {
+    int x = *(const int *)a;
+    int y = *(const int *)b;
+    if (x > y) {
+        return -1;
+    } else if (x < y) {
+        return 1;
+    }
+    return 0;
+}
+
 int main(void) {
     /* ===== Exercise 1 ===== */
     printf("--- Exercise 1 ---\n");
@@ -35,7 +46,7 @@ int main(void) {
         return 1;
     }
 
-       for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 20; i++) {
         *(arr + i) = i + 1;
     }
 
@@ -52,6 +63,15 @@ int main(void) {
         FizzBuzz(n);
         printf("\n");
     }
+
+    /* ===== Exercise 3 ===== */
+    qsort(arr, 20, sizeof(int), compare_desc);
+
+    printf("\n--- Exercise 3: sorted descending ---\n");
+    for (int i = 0; i < 20; i++) {
+        printf("%d ", *(arr + i));
+    }
+    printf("\n");
 
     free(arr);
     return 0;
